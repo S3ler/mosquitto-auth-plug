@@ -116,18 +116,19 @@ void *be_mysql_init()
     }
 	if(host != NULL){
 	_log(LOG_DEBUG, "}}}} host %s", host);
-
+	}
 	if(user != NULL){
 	_log(LOG_DEBUG, "}}}} user %s", user);
-		
+	}	
 	if(pass != NULL){
 	_log(LOG_DEBUG, "}}}} pass %s", pass);
-		
+	}	
 	if(dbname != NULL){
 	_log(LOG_DEBUG, "}}}} dbname %s", dbname);
-		
-	if(port != NULL){
+	}	
+	if(port){
 	_log(LOG_DEBUG, "}}}} port %i", port);
+	}
 	
 	if (!mysql_real_connect(conf->mysql, host, user, pass, dbname, port, NULL, 0)) {
 		fprintf(stderr, "%s\n", mysql_error(conf->mysql));
