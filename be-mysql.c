@@ -114,12 +114,20 @@ void *be_mysql_init()
         reconnect = true;
         mysql_options(conf->mysql, MYSQL_OPT_RECONNECT, &reconnect);
     }
-	
+	if(host != NULL){
 	_log(LOG_DEBUG, "}}}} host %s", host);
-	_log(LOG_DEBUG, "}}}} port %s", port);
+
+	if(user != NULL){
 	_log(LOG_DEBUG, "}}}} user %s", user);
+		
+	if(pass != NULL){
 	_log(LOG_DEBUG, "}}}} pass %s", pass);
+		
+	if(dbname != NULL){
 	_log(LOG_DEBUG, "}}}} dbname %s", dbname);
+		
+	if(port != NULL){
+	_log(LOG_DEBUG, "}}}} port %i", port);
 	
 	if (!mysql_real_connect(conf->mysql, host, user, pass, dbname, port, NULL, 0)) {
 		fprintf(stderr, "%s\n", mysql_error(conf->mysql));
