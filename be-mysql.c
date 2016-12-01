@@ -79,6 +79,7 @@ void *be_mysql_init()
 	pass		= p_stab("pass");
 	dbname		= p_stab("dbname");
 
+	
 	host = (host) ? host : strdup("localhost");
 	port = (!p) ? 3306 : atoi(p);
 
@@ -113,7 +114,13 @@ void *be_mysql_init()
         reconnect = true;
         mysql_options(conf->mysql, MYSQL_OPT_RECONNECT, &reconnect);
     }
-
+	
+	_log(LOG_DEBUG, "}}}} host %s", host);
+	_log(LOG_DEBUG, "}}}} port %s", port);
+	_log(LOG_DEBUG, "}}}} user %s", user);
+	_log(LOG_DEBUG, "}}}} pass %s", pass);
+	_log(LOG_DEBUG, "}}}} dbname %s", dbname);
+	
 	if (!mysql_real_connect(conf->mysql, host, user, pass, dbname, port, NULL, 0)) {
 		fprintf(stderr, "%s\n", mysql_error(conf->mysql));
         if (!conf->auto_connect && !reconnect) {
